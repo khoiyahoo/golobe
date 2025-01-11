@@ -1,0 +1,95 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "extends": [
+    "eslint:recommended",
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["check-file"],
+  "rules": {
+    "dot-notation": "off",
+
+    "no-var": "error",
+    "no-return-await": "off",
+    "no-use-before-define": "off",
+    "no-console": "off",
+    "no-debugger": "off",
+
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/dot-notation": "off",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "separate-type-imports"
+      }
+    ],
+
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/newline-after-import": ["error"],
+    "import/order": ["error"],
+
+    "vue/multi-word-component-names": "off",
+    "vue/no-v-html": "off",
+    "vue/html-closing-bracket-newline": [
+      "error",
+      {
+        "singleline": "never",
+        "multiline": "always"
+      }
+    ],
+    "vue/max-attributes-per-line": [
+      "error",
+      {
+        "singleline": 1,
+        "multiline": 1
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleAttributePerLine": true,
+        "htmlWhitespaceSensitivity": "ignore"
+      }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "**/*": "KEBAB_CASE"
+      }
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/!(pages)/!(index).vue": "PASCAL_CASE",
+        "**/!(constant)/*.{js,ts}": "CAMEL_CASE",
+        "**/(constant)/*.{js,ts}": "SCREAMING_SNAKE_CASE"
+      },
+      { "ignoreMiddleExtensions": true }
+    ],
+    "check-file/filename-blocklist": [
+      "warn",
+      {
+        "**/(composables)/^(?!use)*.{js,ts}": "^(?use)*.{js,ts}"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "parser": "vue-eslint-parser"
+    }
+  ]
+}
