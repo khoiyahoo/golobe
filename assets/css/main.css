@@ -27,3 +27,7 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+.container {
+  @apply my-0 sm:max-w-none md:max-w-none px-[6.5rem];
+}

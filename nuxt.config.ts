@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["@nuxtjs/eslint-module", "@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/eslint-module", "@nuxtjs/google-fonts", "@nuxt/image"],
   typescript: {
     typeCheck: true,
   },
@@ -20,5 +20,8 @@ export default defineNuxtConfig({
     families: {
       Montserrat: [400, 500, 600, 700],
     },
+  },
+  image: {
+    dir: "assets",
   },
 })
