@@ -24,4 +24,12 @@ export default defineNuxtConfig({
   image: {
     dir: "assets",
   },
+  // experimental: {
+  //   defaults: {
+  //     nuxtLink: {
+  //       componentName: "NuxtLink",
+  //       exactActiveClass: "nuxt-exact-active-link",
+  //     },
+  //   },
+  // },
 })

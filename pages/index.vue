@@ -11,7 +11,7 @@ const handleCustomChange = (s: string) => {
 </script>
 
 <template>
-  <div>
+  <div class="h-[1000vh]">
     <Typography
       title="Hello World 12"
       variant="h1"

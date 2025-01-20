@@ -31,3 +31,7 @@ html {
 .container {
   @apply my-0 sm:max-w-none md:max-w-none px-[6.5rem];
 }
+
+.nuxt-exact-active-link {
+  @apply after:absolute after:content-[''] after:w-full after:h-1 after:bg-primary-200 after:top-[53px]
+}

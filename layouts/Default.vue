@@ -1,7 +1,9 @@
 <template>
   <div>
     <DefaultHeader />
-    <slot></slot>
+    <div class="pt-[5.625rem]">
+      <slot></slot>
+    </div>
     <DefaultFooter />
   </div>
 </template>

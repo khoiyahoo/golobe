@@ -1,16 +1,47 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from "vue"
+import { useRoute } from "vue-router"
 import Typography from "~/components/atoms/Typography.vue"
+import { cn } from "~/utils/common"
+
+const route = useRoute()
+const isScrolled = ref(false)
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 0
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll)
+})
 </script>
 
 <template>
-  <header class="bg-white w-full sticky">
+  <header
+    :class="
+      cn(
+        'bg-white w-full fixed z-[1000] transition-all duration-300 ease-in-out',
+        {
+          'bg-transparent': !isScrolled,
+          'backdrop-blur-md bg-white/30': isScrolled,
+        },
+      )
+    "
+  >
     <div
       class="container w-full flex h-[5.625rem] py-[1.3125rem] justify-between items-center"
     >
       <nav class="flex gap-8 items-center">
         <NuxtLink
           to="/flights"
-          class="flex gap-1 items-center justify-center"
+          :class="
+            cn('flex gap-1 items-center justify-center relative', {
+              'nuxt-exact-active-link': route.path === '/flights',
+            })
+          "
         >
           <NuxtImg
             src="/icons/icon-plane-black.svg"
@@ -26,7 +57,11 @@ import Typography from "~/components/atoms/Typography.vue"
         </NuxtLink>
         <NuxtLink
           to="/stays"
-          class="flex gap-1 items-center justify-center"
+          :class="
+            cn('flex gap-1 items-center justify-center relative', {
+              'nuxt-exact-active-link': route.path === '/stays',
+            })
+          "
         >
           <NuxtImg
             src="/icons/icon-bed-black.svg"
@@ -45,6 +80,7 @@ import Typography from "~/components/atoms/Typography.vue"
         <NuxtImg
           src="/images/img-logo-black.svg"
           alt="icon"
+          class="w-[6.875rem] h-9"
         />
       </NuxtLink>
 
