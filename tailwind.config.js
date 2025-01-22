@@ -10,6 +10,13 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-top": "url('/images/img-top-search.webp')",
+        "hero-drop": "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4))",
+      },
+      boxShadow: {
+        "container-search": "0px 4px 16px 0px rgba(141, 211, 187, 0.15)",
+      },
       colors: {
         transparent: "transparent",
         white: "#FFFFFF",
@@ -27,6 +34,7 @@ export default {
         gray: {
           100: "#D2D1D3",
           200: "#8F8C91",
+          300: "#D7E2EE",
         },
         error: {
           100: "#FD736E",

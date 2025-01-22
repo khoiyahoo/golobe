@@ -43,14 +43,14 @@ const FONT_WEIGHTS: Record<IType, string> = {
 }
 
 const TEXT_SIZES: Record<ISize, string> = {
-  xxLarge: "text-[2.5rem]",
-  xLarge: "text-4xl",
-  large: "text-[2rem]",
-  mediumLarge: "text-2xl",
-  medium: "text-xl",
-  smallMedium: "text-base",
-  small: "text-sm",
-  xSmall: "text-xs",
-  xxSmall: "text-[0.625rem]",
+  xxLarge: "text-[2.5rem]", // 40px
+  xLarge: "text-4xl", // 36px
+  large: "text-[2rem]", // 32px
+  mediumLarge: "text-2xl", // 24px
+  medium: "text-xl", // 20px
+  smallMedium: "text-base", // 16px
+  small: "text-sm", // 14px
+  xSmall: "text-xs", // 12px
+  xxSmall: "text-[0.625rem]", // 10px
 }
 </script>
