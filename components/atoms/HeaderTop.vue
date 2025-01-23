@@ -1,12 +1,29 @@
 <script setup lang="ts">
+import { signOut } from "firebase/auth"
 import { onBeforeUnmount, onMounted, ref } from "vue"
+import { useRouter } from "vue-router"
+import { useCurrentUser, useFirebaseAuth } from "vuefire"
 import Typography from "~/components/atoms/Typography.vue"
 import { cn } from "~/utils/common"
 
 const isScrolled = ref(false)
-
+const user = useCurrentUser()
+const auth = useFirebaseAuth()
+const router = useRouter()
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 0
+}
+
+const handleLogout = async () => {
+  if (auth) {
+    await signOut(auth)
+      .then(() => {
+        router.replace("/login")
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 }
 
 onMounted(() => {
@@ -76,18 +93,37 @@ onBeforeUnmount(() => {
 
       <nav class="flex items-center gap-4">
         <NuxtLink
-          to="/login"
-          class="h-12 rounded-lg bg-transparent hover:bg-gray-100 py-[0.625rem] px-6 flex items-center justify-center"
+          :to="user ? 'profile' : '/login'"
+          class="h-12 rounded-lg bg-transparent hover:bg-gray-100/30 py-[0.625rem] px-6 flex gap-2 items-center justify-center"
         >
+          <img
+            :src="user?.photoURL as string"
+            alt="avatar"
+            class="size-8 rounded-full"
+          />
           <Typography
-            title="Login"
+            :title="user ? (user.displayName as string) : 'Login'"
             variant="p"
             size="small"
             type="semiBold"
             :class-names="'text-white'"
           />
         </NuxtLink>
+        <button
+          v-if="user"
+          class="h-12 rounded-lg bg-white py-[0.625rem] px-6 hover:bg-gray-100 flex items-center justify-center"
+          @click="handleLogout"
+        >
+          <Typography
+            title="Logout"
+            variant="p"
+            size="small"
+            type="semiBold"
+            :class-names="'text-black-100'"
+          />
+        </button>
         <NuxtLink
+          v-else
           to="/signup"
           class="h-12 rounded-lg bg-white py-[0.625rem] px-6 hover:bg-gray-100 flex items-center justify-center"
         >

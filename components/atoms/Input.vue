@@ -4,7 +4,7 @@ import { cn } from "~/utils/common"
 import Typography from "~/components/atoms/Typography.vue"
 
 type IVariant = "primary" | "secondary"
-type IType = "text" | "number"
+type IType = "text" | "number" | "password"
 
 type Props = {
   variant: IVariant
