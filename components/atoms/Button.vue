@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { cn } from "~/utils/common"
 
-type IType = "primary" | "secondary" | "tertiary" | "outline"
+type IVariant = "primary" | "secondary" | "tertiary" | "outline"
 type ISize = "normal" | "small"
 interface ButtonProps {
   href?: never
@@ -17,7 +17,7 @@ interface LinkProps {
 
 interface BaseProps {
   size: ISize
-  type: IType
+  variant: IVariant
   className?: string
   disabled?: boolean
   iconLeft?: string
@@ -26,7 +26,7 @@ interface BaseProps {
 type Props = BaseProps & (LinkProps | ButtonProps)
 const {
   size,
-  type,
+  variant,
   className = "",
   disabled = false,
   iconLeft = "",
@@ -41,7 +41,7 @@ const STYLE_BTN: Record<string, string> = {
   tertiary: "bg-primary-400",
   outline: "bg-white border border-primary-100",
   disabled:
-    type === "outline"
+    variant === "outline"
       ? "bg-white border border border-gray-100"
       : "bg-gray-100",
 }
@@ -52,7 +52,7 @@ const STYLE_BTN: Record<string, string> = {
     v-if="as === 'button'"
     :class="
       cn(
-        STYLE_BTN[type],
+        STYLE_BTN[variant],
         STYLE_BTN[size],
         {
           [STYLE_BTN.disabled]: disabled,
@@ -77,7 +77,7 @@ const STYLE_BTN: Record<string, string> = {
     v-else-if="as === 'link'"
     :class="
       cn(
-        STYLE_BTN[type],
+        STYLE_BTN[variant],
         STYLE_BTN[size],
         {
           [STYLE_BTN.disabled]: disabled,

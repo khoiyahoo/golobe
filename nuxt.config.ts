@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "@nuxt/image",
     "nuxt-vuefire",
+    "@pinia/nuxt",
   ],
   typescript: {
     typeCheck: true,

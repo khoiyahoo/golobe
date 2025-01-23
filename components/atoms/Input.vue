@@ -40,21 +40,15 @@ const STYLE_MAPPING: Record<string, string> = {
     {
       "text-primary-100": variant === "secondary",
     },
-    {
-      "text-error-100": isError,
-    },
   ),
-  supText: cn("mt-1 mx-4", { "text-error-100": isError }),
+  supText: cn("mt-1 mx-4"),
   input: "w-full h-[2.5rem] outline-none",
-  primary: cn("border border-black-300 bg-white caret-black-100", {
-    "caret-error-100": isError,
-  }),
+  primary: cn("border border-black-300 bg-white caret-black-100"),
   secondary: cn(
     "border-[0.125rem] border-primary-300 bg-white caret-primary-100",
-    { "caret-error-100": isError },
   ),
   search: "flex items-center gap-3",
-  error: "flex items-center gap-3 border border-error-100",
+  error: "flex items-center gap-3 border border-error-100 caret-error-100",
 }
 
 const handleChange = (event: Event) => {
@@ -76,7 +70,9 @@ const handleChange = (event: Event) => {
         )
       "
     >
-      <label :class="cn(STYLE_MAPPING.label)">{{ label }}</label>
+      <label :class="cn(STYLE_MAPPING.label, { 'text-error-100': isError })">
+        {{ label }}
+      </label>
       <NuxtImg
         v-if="isSearch"
         src="/icons/icon-search.svg"
@@ -104,7 +100,7 @@ const handleChange = (event: Event) => {
       :variant="'p'"
       :size="'small'"
       :type="'regular'"
-      :class-names="cn(STYLE_MAPPING.supText)"
+      :class-names="cn(STYLE_MAPPING.supText, { 'text-error-100': isError })"
     />
   </div>
 </template>

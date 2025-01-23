@@ -42,7 +42,7 @@ import Button from "~/components/atoms/Button.vue"
       <Button
         :icon-left="'/icons/icon-send-black.svg'"
         :as="'button'"
-        :type="'primary'"
+        :variant="'primary'"
         :size="'normal'"
       >
         <Typography

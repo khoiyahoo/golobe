@@ -97,12 +97,15 @@ onBeforeUnmount(() => {
           class="h-12 rounded-lg bg-transparent hover:bg-gray-100/30 py-[0.625rem] px-6 flex gap-2 items-center justify-center"
         >
           <img
+            v-if="!!user?.photoURL"
             :src="user?.photoURL as string"
             alt="avatar"
             class="size-8 rounded-full"
           />
           <Typography
-            :title="user ? (user.displayName as string) : 'Login'"
+            :title="
+              user?.displayName || (user?.email?.split('@')[0] ?? 'Login')
+            "
             variant="p"
             size="small"
             type="semiBold"
