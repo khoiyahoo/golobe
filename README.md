@@ -164,6 +164,7 @@ export interface InputProps {
 
 5. **Authentication**
    - Create service-account.json file at root (follow with service-account.txt)
+   - Add file .env (follow with service-account.txt)
 
 ## 🚥 Getting Started
 ### Setup
