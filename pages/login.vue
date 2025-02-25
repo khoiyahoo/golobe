@@ -6,18 +6,24 @@ import {
 } from "firebase/auth"
 import { useRouter } from "vue-router"
 import { useFirebaseAuth } from "vuefire"
-import { Form, Field } from "vee-validate"
+import { Form, Field, type SubmissionHandler } from "vee-validate"
 import { toTypedSchema } from "@vee-validate/zod"
 import * as zod from "zod"
 import Typography from "~/components/atoms/Typography.vue"
 import Input from "~/components/atoms/Input.vue"
 import Button from "~/components/atoms/Button.vue"
 import { useLoadingStore } from "~/stores/loading"
+import { useToastStore } from "~/stores/toast"
 import { definePageMeta } from "#imports"
 
 definePageMeta({
   layout: false,
 })
+
+type ILoginFrom = {
+  email: string
+  password: string
+}
 
 const schema = toTypedSchema(
   zod.object({
@@ -40,6 +46,8 @@ const schema = toTypedSchema(
 const router = useRouter()
 const auth = useFirebaseAuth()
 const store = useLoadingStore()
+const toastStore = useToastStore()
+
 const handleLoginWithGoogle = async () => {
   if (auth) {
     store.setLoading(true)
@@ -54,17 +62,24 @@ const handleLoginWithGoogle = async () => {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const onSubmit = async (values: any) => {
-  console.log("Form submitted:", values)
+const onSubmit: SubmissionHandler<ILoginFrom> = async values => {
   if (auth) {
     store.setLoading(true)
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password)
+      toastStore.setToast({
+        show: true,
+        message: "Logged in successfully",
+        type: "success",
+      })
       router.replace("/")
       store.setLoading(false)
     } catch (err) {
-      console.log(err)
+      toastStore.setToast({
+        show: true,
+        message: "Email or password is incorrect.",
+        type: "error",
+      })
       store.setLoading(false)
     }
   }
@@ -76,7 +91,7 @@ const handleError = (errors: any) => {
 </script>
 
 <template>
-  <div class="container pt-[6.5rem] w-full h-full">
+  <div class="container pt-[6.5rem] w-full h-full flex gap-8 justify-center">
     <div class="w-1/2">
       <NuxtImg
         src="/images/img-logo-black.svg"
@@ -104,7 +119,7 @@ const handleError = (errors: any) => {
           v-slot="{ errors }"
           class="w-full"
           :validation-schema="schema"
-          @submit="onSubmit"
+          @submit="onSubmit as SubmissionHandler<ILoginFrom>"
           @invalid-submit="handleError"
         >
           <div class="flex flex-col gap-6 w-full">
@@ -138,7 +153,7 @@ const handleError = (errors: any) => {
                 :is-error="!!errors.password"
               />
             </Field>
-            <div class="flex justify-between">
+            <div class="flex justify-between mb-4">
               <div class="flex gap-2 items-center">
                 <input type="checkbox" />
                 <label>
@@ -187,13 +202,15 @@ const handleError = (errors: any) => {
                 type="medium"
                 class="text-black-100"
               />
-              <Typography
-                title="Sign up"
-                variant="p"
-                size="small"
-                type="medium"
-                class="text-error-100"
-              />
+              <NuxtLink to="/sign-up">
+                <Typography
+                  title="Sign up"
+                  variant="p"
+                  size="small"
+                  type="medium"
+                  class="text-error-100 cursor-pointer"
+                />
+              </NuxtLink>
             </div>
           </div>
         </Form>
@@ -204,7 +221,7 @@ const handleError = (errors: any) => {
             variant="p"
             size="small"
             type="regular"
-            class="text-black-100 w-[150px]"
+            class="text-black-100 w-[150px] text-center"
           />
           <hr class="h-[0.0313rem] w-[calc(100%/3)] bg-black-100" />
         </div>
