@@ -162,6 +162,9 @@ export interface InputProps {
    - Integration tests for organisms, features
    - E2E tests for templates
 
+5. **Authentication**
+   - Create service-account.json file at root (follow with service-account.txt)
+
 ## 🚥 Getting Started
 ### Setup
 
