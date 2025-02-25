@@ -13,9 +13,13 @@ export default {
       backgroundImage: {
         "hero-top": "url('/images/img-top-search.webp')",
         "hero-drop": "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4))",
+        "flight-section": "url('/images/img-flight-section.webp')",
+        "hotel-section": "url('/images/img-hotel-section.webp')",
       },
       boxShadow: {
         "container-search": "0px 4px 16px 0px rgba(141, 211, 187, 0.15)",
+        card: "0px 4px 16px 0px rgba(17, 34, 17, 0.05)",
+        review: "2px 4px 16px 0px rgba(17, 34, 17, 0.10)",
       },
       colors: {
         transparent: "transparent",
@@ -23,6 +27,7 @@ export default {
         black: {
           100: "#000000",
           200: "#1C1B1F",
+          210: "#121",
           300: "#79747E",
         },
         primary: {

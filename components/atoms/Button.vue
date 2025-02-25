@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { cn } from "~/utils/common"
 
-type IVariant = "primary" | "secondary" | "tertiary" | "outline"
+type IVariant = "primary" | "secondary" | "tertiary" | "outlined"
 type ISize = "normal" | "small"
 interface ButtonProps {
   href?: never
@@ -39,9 +39,9 @@ const STYLE_BTN: Record<string, string> = {
   primary: "bg-primary-100",
   secondary: "bg-primary-200",
   tertiary: "bg-primary-400",
-  outline: "bg-white border border-primary-100",
+  outlined: "bg-white border border-primary-100",
   disabled:
-    variant === "outline"
+    variant === "outlined"
       ? "bg-white border border border-gray-100"
       : "bg-gray-100",
 }
